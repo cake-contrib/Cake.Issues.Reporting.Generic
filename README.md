@@ -1,29 +1,29 @@
-# HTML Reports for Cake Issues Addin
+# Generic text reports for Cake Issues Addin
 
-This addin for the Cake Build Automation System allows you to create HTML reports for issues found
-using any code analyzer or linter using the [Cake Issues addin](https://github.com/cake-contrib/Cake.Issues).
+This addin for the Cake Build Automation System allows you to create reports in any text based format (HTML, Markdown, ...)
+for issues found using any code analyzer or linter using the [Cake Issues addin](https://github.com/cake-contrib/Cake.Issues).
 
 For more information about this add-in see the [Cake.Issues website](https://cake-contrib.github.io/Cake.Issues.Website)
 and for general information about the Cake build automation system see the [Cake website](http://cakebuild.net)
 
-[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/cake-contrib/Cake.Issues.Reporting.Html/blob/feature/build/LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/cake-contrib/Cake.Issues.Reporting.Generic/blob/feature/build/LICENSE)
 
 ## Information
 
 | | Stable | Pre-release |
 |:--:|:--:|:--:|
-|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/cake-contrib/Cake.Issues.Reporting.Html.svg)](https://github.com/cake-contrib/Cake.Issues.Reporting.Html/releases/latest)|
-|NuGet|[![NuGet](https://img.shields.io/nuget/v/Cake.Issues.Reporting.Html.svg)](https://www.nuget.org/packages/Cake.Issues.Reporting.Html)|[![NuGet](https://img.shields.io/nuget/vpre/Cake.Issues.Reporting.Html.svg)](https://www.nuget.org/packages/Cake.Issues.Reporting.Html)|
+|GitHub Release|-|[![GitHub release](https://img.shields.io/github/release/cake-contrib/Cake.Issues.Reporting.Generic.svg)](https://github.com/cake-contrib/Cake.Issues.Reporting.Generic/releases/latest)|
+|NuGet|[![NuGet](https://img.shields.io/nuget/v/Cake.Issues.Reporting.Generic.svg)](https://www.nuget.org/packages/Cake.Issues.Reporting.Generic)|[![NuGet](https://img.shields.io/nuget/vpre/Cake.Issues.Reporting.Generic.svg)](https://www.nuget.org/packages/Cake.Issues.Reporting.Generic)|
 
 ## Build Status
 
 |Develop|Master|
 |:--:|:--:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/1bnglf1kihgqorvy/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-issues-reporting-html/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/1bnglf1kihgqorvy/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-issues-reporting-html/branch/master)|
+|[![Build status](https://ci.appveyor.com/api/projects/status/1bnglf1kihgqorvy/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-issues-reporting-generic/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/1bnglf1kihgqorvy/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-issues-reporting-generic/branch/master)|
 
 ## Code Coverage
 
-[![Coverage Status](https://coveralls.io/repos/github/cake-contrib/Cake.Issues.Reporting.Html/badge.svg?branch=develop)](https://coveralls.io/github/cake-contrib/Cake.Issues.Reporting.Html?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/cake-contrib/Cake.Issues.Reporting.Generic/badge.svg?branch=develop)](https://coveralls.io/github/cake-contrib/Cake.Issues.Reporting.Generic?branch=develop)
 
 ## Quick Links
 
