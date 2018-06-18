@@ -25,6 +25,9 @@
                 case GenericIssueReportTemplate.HtmlDxDataGrid:
                     return "DxDataGrid.cshtml";
 
+                case GenericIssueReportTemplate.HtmlDxPivotGrid:
+                    return "DxPivotGrid.cshtml";
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(template));
             }

@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlDxPivotGridAreaExtensionsTests.cs" />
     <Compile Include="ColumnSortOrderExtensionsTests.cs" />
     <Compile Include="DevExtremeThemeExtensionsTests.cs" />
     <Compile Include="ExceptionAssertExtensions.cs" />
