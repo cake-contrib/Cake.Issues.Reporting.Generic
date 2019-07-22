@@ -5,9 +5,7 @@
     using System.IO;
     using Cake.Core.Diagnostics;
     using Cake.Core.IO;
-    using RazorEngine;
-    using RazorEngine.Configuration;
-    using RazorEngine.Templating;
+    using RazorLight;
 
     /// <summary>
     /// Generator for creating text based issue reports.
@@ -38,13 +36,11 @@
 
             try
             {
-                var result =
-                    Engine.Razor.RunCompile(
-                        this.genericIssueReportFormatSettings.Template,
-                        Guid.NewGuid().ToString(),
-                        typeof(IEnumerable<IIssue>),
-                        issues,
-                        new DynamicViewBag(this.genericIssueReportFormatSettings.Options));
+                var engine = new RazorLightEngineBuilder()
+                    .UseMemoryCachingProvider()
+                    .Build();
+
+                var result = engine.CompileRenderAsync(Guid.NewGuid().ToString(), this.genericIssueReportFormatSettings.Template, issues, typeof(IEnumerable<IIssue>), this.genericIssueReportFormatSettings.Options.ToExpando()).Result;
 
                 File.WriteAllText(this.Settings.OutputFilePath.FullPath, result);
 
@@ -60,23 +56,23 @@
 
         private void ConfigureRazorEngine()
         {
-            var config = new TemplateServiceConfiguration
-            {
-                // Disable temp file locking, since we don't expect much templates, they don't change at runtime and we trust them.
-                // This allows RazorEngine to delete the files, without requiring us to run it in a separate AppDomain.
-                // See https://antaris.github.io/RazorEngine/index.html#Temporary-files.
-                DisableTempFileLocking = true,
+            //var config = new TemplateServiceConfiguration
+            //{
+            //    // Disable temp file locking, since we don't expect much templates, they don't change at runtime and we trust them.
+            //    // This allows RazorEngine to delete the files, without requiring us to run it in a separate AppDomain.
+            //    // See https://antaris.github.io/RazorEngine/index.html#Temporary-files.
+            //    DisableTempFileLocking = true,
 
-                // Disable warnings that temp files cannot be cleaned up.
-                CachingProvider = new DefaultCachingProvider(t => { }),
+            //    // Disable warnings that temp files cannot be cleaned up.
+            //    CachingProvider = new DefaultCachingProvider(t => { }),
 
-                // Use custom reference resolver to make it work with assemblies embedded through Costura.Fody.
-                ReferenceResolver = new RazorEngineReferenceResolver(),
-            };
+            //    // Use custom reference resolver to make it work with assemblies embedded through Costura.Fody.
+            //    ReferenceResolver = new RazorEngineReferenceResolver(),
+            //};
 
-            var service = RazorEngineService.Create(config);
+            //var service = RazorEngineService.Create(config);
 
-            Engine.Razor = service;
+            //Engine.Razor = service;
         }
     }
 }
