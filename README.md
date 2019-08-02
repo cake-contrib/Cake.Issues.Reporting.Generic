@@ -3,7 +3,7 @@
 This addin for the Cake Build Automation System allows you to create reports in any text based format (HTML, Markdown, ...)
 for issues found using any code analyzer or linter using the [Cake Issues addin](https://github.com/cake-contrib/Cake.Issues).
 
-For more information about this add-in see the [Cake.Issues website](https://cake-contrib.github.io/Cake.Issues.Website)
+For more information about this add-in see the [Cake.Issues website](https://cakeissues.net)
 and for general information about the Cake build automation system see the [Cake website](http://cakebuild.net)
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/cake-contrib/Cake.Issues.Reporting.Generic/blob/feature/build/LICENSE)
@@ -28,7 +28,7 @@ and for general information about the Cake build automation system see the [Cake
 
 ## Quick Links
 
-- [Documentation](https://cake-contrib.github.io/Cake.Issues.Website)
+- [Documentation](https://cakeissues.net)
 
 ## Chat Room
 
