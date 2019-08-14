@@ -4,11 +4,16 @@
     using System.Collections.Generic;
     using System.Dynamic;
 
+    /// <summary>
+    /// Extension methods for Dictionary.
+    /// </summary>
     public static class DictionaryExtensions
     {
         /// <summary>
-        /// Extension method that turns a dictionary of string and object to an ExpandoObject
+        /// Extension method that turns a dictionary of string and object to an ExpandoObject.
         /// </summary>
+        /// <param name="dictionary">The dictionary.</param>
+        /// <returns><see cref="ExpandoObject"/>ExpandoObject.</returns>
         public static ExpandoObject ToExpando(this IDictionary<string, object> dictionary)
         {
             var expando = new ExpandoObject();
