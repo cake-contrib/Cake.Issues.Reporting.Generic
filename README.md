@@ -3,7 +3,7 @@
 This addin for the Cake Build Automation System allows you to create reports in any text based format (HTML, Markdown, ...)
 for issues found using any code analyzer or linter using the [Cake Issues addin](https://github.com/cake-contrib/Cake.Issues).
 
-For more information about this add-in see the [Cake.Issues website](https://cake-contrib.github.io/Cake.Issues.Website)
+For more information about this add-in see the [Cake.Issues website](https://cakeissues.net)
 and for general information about the Cake build automation system see the [Cake website](http://cakebuild.net)
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/cake-contrib/Cake.Issues.Reporting.Generic/blob/feature/build/LICENSE)
@@ -20,7 +20,7 @@ and for general information about the Cake build automation system see the [Cake
 | | Develop | Master |
 |:--:|:--:|:--:|
 |AppVeyor Windows|[![Build status](https://ci.appveyor.com/api/projects/status/by753fqt03g301iy/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-issues-reporting-generic/branch/develop)|[![Build status](https://ci.appveyor.com/api/projects/status/by753fqt03g301iy/branch/master?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-issues-reporting-generic/branch/master)|
-|Azure DevOps Windows|[![Build Status](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_apis/build/status/cake-contrib.Cake.Issues.Reporting.Generic?branchName=develop&jobName=Windows)](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_build/latest?definitionId=15?branchName=develop)|[![Build Status](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_apis/build/status/cake-contrib.Cake.Issues.Reporting.Generic?branchName=master&jobName=Windows)](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_build/latest?definitionId=15?branchName=master)|
+|Azure DevOps Windows|[![Build Status](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_apis/build/status/cake-contrib.Cake.Issues.Reporting.Generic?branchName=develop&jobName=Windows)](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_build/latest?definitionId=15&branchName=develop)|[![Build Status](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_apis/build/status/cake-contrib.Cake.Issues.Reporting.Generic?branchName=master&jobName=Windows)](https://dev.azure.com/cake-contrib/Cake.Issues.Reporting.Generic/_build/latest?definitionId=15&branchName=master)|
 
 ## Code Coverage
 
@@ -28,7 +28,7 @@ and for general information about the Cake build automation system see the [Cake
 
 ## Quick Links
 
-- [Documentation](https://cake-contrib.github.io/Cake.Issues.Website)
+- [Documentation](https://cakeissues.net)
 
 ## Chat Room
 
