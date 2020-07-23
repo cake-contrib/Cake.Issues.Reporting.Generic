@@ -100,4 +100,5 @@ fi
 ###########################################################################
 
 # Start Cake
+exec mono "$CAKE_EXE" $SCRIPT --bootstrap
 exec mono "$CAKE_EXE" $SCRIPT --verbosity=$VERBOSITY --configuration=$CONFIGURATION --target=$TARGET $DRYRUN "${SCRIPT_ARGUMENTS[@]}"
