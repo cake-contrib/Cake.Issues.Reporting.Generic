@@ -10,9 +10,66 @@ pr:
 - hotfix/*
 
 jobs:
-- job: Windows
+- job: Build
   pool:
     vmImage: 'windows-2019'
   steps:
   - powershell: ./build.ps1
-    displayName: 'Cake Build'
+    displayName: 'Build'
+  - publish: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+    artifact: NuGet Package
+- job: Test_Windows_DotNetFramework
+  displayName: Integration Tests Windows (Cake runner for .NET Framework)
+  dependsOn: Build
+  pool:
+    vmImage: 'windows-2019'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+  - powershell: choco install markdownlint-cli --no-progress
+    displayName: 'Install required tools'
+  - download: current
+    artifact: NuGet Package
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/NuGet Package
+      #contents: '**' 
+      targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+      #cleanTargetFolder: false # Optional
+      #overWrite: false # Optional
+      #flattenFolders: false # Optional
+      #preserveTimestamp: false # Optional
+  - powershell: ./build.ps1 -target Build-Demo-Reports
+    displayName: 'Integration Tests'
+- job: Test_macOS_DotNetFramework
+  displayName: Integration Tests macOS 10.14 (Cake runner for .NET Framework)
+  dependsOn: Build
+  pool:
+    vmImage: 'macOS-10.14'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+  - bash: |
+      npm install -g markdownlint-cli
+    displayName: 'Install required tools'
+  # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
+  #  https://go.microsoft.com/fwlink/?linkid=871629 
+  - bash: |
+      sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 5_18_1
+    displayName: 'Select Mono 5.18.1'
+  - download: current
+    artifact: NuGet Package
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/NuGet Package
+      #contents: '**' 
+      targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+      #cleanTargetFolder: false # Optional
+      #overWrite: false # Optional
+      #flattenFolders: false # Optional
+      #preserveTimestamp: false # Optional
+  - bash: |
+      ./build.sh --target Build-Demo-Reports
+    displayName: 'Integration Tests'
