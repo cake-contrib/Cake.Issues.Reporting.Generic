@@ -50,7 +50,8 @@ Task("Build-Demo-Reports")
         {
             Arguments = new Dictionary<string, string>
             {
-                { "verbosity", Context.Log.Verbosity.ToString("F") }
+                { "verbosity", Context.Log.Verbosity.ToString("F") },
+                { "settings_skippackageversioncheck", "true" }
             }
         });
 });
