@@ -232,7 +232,7 @@ $cakeArguments += $ScriptArgs
 # Start Cake
 Write-Host "Running build script..."
 
-& "$CAKE_EXE" ./recipe.cake --bootstrap
+& "$CAKE_EXE" "$Script" --bootstrap
 if ($LASTEXITCODE -eq 0)
 {
     & "$CAKE_EXE" $cakeArguments
