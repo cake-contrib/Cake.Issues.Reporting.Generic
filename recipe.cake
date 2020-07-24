@@ -24,12 +24,12 @@ ToolSettings.SetToolSettings(
     testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
     testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
-Task("Build-Demo-Reports")
+Task("Prepare-Build-Demo-Reports")
     .Does<BuildVersion>((context, buildVersion) =>
 {
     var package =
         BuildParameters.Paths.Directories.NuGetPackages.CombineWithFilePath("Cake.Issues.Reporting.Generic." + buildVersion.SemVersion + ".nupkg");
-    var addinDir = MakeAbsolute(Directory("./demos/tools/Addins/Cake.Issues.Reporting.Generic"));
+    var addinDir = BuildParameters.Paths.Directories.TempBuild.Combine("Cake.Issues.Reporting.Generic");
 
     if (DirectoryExists(addinDir))
     {
@@ -43,16 +43,6 @@ Task("Build-Demo-Reports")
     }
 
     Unzip(package, addinDir);
-
-    CakeExecuteScript(
-        "./demos/build.cake",
-        new CakeSettings
-        {
-            Arguments = new Dictionary<string, string>
-            {
-                { "verbosity", Context.Log.Verbosity.ToString("F") }
-            }
-        });
 });
 
 Build.Run();
