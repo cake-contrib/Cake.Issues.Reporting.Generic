@@ -10,6 +10,7 @@ pr:
 - hotfix/*
 
 jobs:
+# Build
 - job: Build
   pool:
     vmImage: 'windows-2019'
@@ -18,8 +19,10 @@ jobs:
     displayName: 'Build'
   - publish: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
     artifact: NuGet Package
+    displayName: 'Publish NuGet package as build artifact'
+# Integration Tests Windows (.NET Framework runner)
 - job: Test_Windows_DotNetFramework
-  displayName: Integration Tests Windows (Cake runner for .NET Framework)
+  displayName: 'Integration Tests Windows (.NET Framework runner)'
   dependsOn: Build
   pool:
     vmImage: 'windows-2019'
@@ -27,23 +30,22 @@ jobs:
   - task: NodeTool@0
     inputs:
       versionSpec: '14.x'
+    displayName: 'Install NodeJs 14.x'
   - powershell: choco install markdownlint-cli --no-progress
     displayName: 'Install required tools'
   - download: current
     artifact: NuGet Package
+    displayName: 'Download build artifact'
   - task: CopyFiles@2
     inputs:
       sourceFolder: $(Pipeline.Workspace)/NuGet Package
-      #contents: '**' 
       targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
-      #cleanTargetFolder: false # Optional
-      #overWrite: false # Optional
-      #flattenFolders: false # Optional
-      #preserveTimestamp: false # Optional
+    displayName: 'Prepare build artifact for test run'
   - powershell: ./build.ps1 -target Build-Demo-Reports
-    displayName: 'Integration Tests'
+    displayName: 'Run integration tests'
+# Integration Tests macOS 10.14 (.NET Framework runner)
 - job: Test_macOS_DotNetFramework
-  displayName: Integration Tests macOS 10.14 (Cake runner for .NET Framework)
+  displayName: 'Integration Tests macOS 10.14 (.NET Framework runner)'
   dependsOn: Build
   pool:
     vmImage: 'macOS-10.14'
@@ -51,6 +53,7 @@ jobs:
   - task: NodeTool@0
     inputs:
       versionSpec: '14.x'
+    displayName: 'Install NodeJs 14.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -61,15 +64,12 @@ jobs:
     displayName: 'Select Mono 5.18.1'
   - download: current
     artifact: NuGet Package
+    displayName: 'Download build artifact'
   - task: CopyFiles@2
     inputs:
       sourceFolder: $(Pipeline.Workspace)/NuGet Package
-      #contents: '**' 
       targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
-      #cleanTargetFolder: false # Optional
-      #overWrite: false # Optional
-      #flattenFolders: false # Optional
-      #preserveTimestamp: false # Optional
+    displayName: 'Prepare build artifact for test run'
   - bash: |
       ./build.sh --target Build-Demo-Reports
-    displayName: 'Integration Tests'
+    displayName: 'Run integration tests'
