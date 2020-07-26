@@ -24,25 +24,4 @@ ToolSettings.SetToolSettings(
     testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
     testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
-Task("Prepare-Build-Demo-Reports")
-    .Does<BuildVersion>((context, buildVersion) =>
-{
-    var package =
-        BuildParameters.Paths.Directories.NuGetPackages.CombineWithFilePath("Cake.Issues.Reporting.Generic." + buildVersion.SemVersion + ".nupkg");
-    var addinDir = BuildParameters.Paths.Directories.TempBuild.Combine("Cake.Issues.Reporting.Generic");
-
-    if (DirectoryExists(addinDir))
-    {
-        DeleteDirectory(
-            addinDir,
-            new DeleteDirectorySettings 
-            {
-                Recursive = true,
-                Force = true
-            });
-    }
-
-    Unzip(package, addinDir);
-});
-
 Build.Run();

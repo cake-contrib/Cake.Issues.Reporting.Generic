@@ -41,8 +41,6 @@ jobs:
       sourceFolder: $(Pipeline.Workspace)/NuGet Package
       targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
     displayName: 'Copy build artifact for test run'
-  - powershell: ./build.ps1 -target Prepare-Build-Demo-Reports
-    displayName: 'Prepare build artifact for test run'
   - powershell: ./build.ps1
     workingDirectory: ./demos/
     displayName: 'Run integration tests'
@@ -73,9 +71,6 @@ jobs:
       sourceFolder: $(Pipeline.Workspace)/NuGet Package
       targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
     displayName: 'Copy build artifact for test run'
-  - bash: |
-      ./build.sh --target Prepare-Build-Demo-Reports
-    displayName: 'Prepare build artifact for test run'
   - bash: |
       ./build.sh
     workingDirectory: ./demos/
