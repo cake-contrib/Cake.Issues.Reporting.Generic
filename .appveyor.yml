@@ -15,7 +15,7 @@ build_script:
 
 # Tests
 test_script:
-  - ps: .\build.ps1 -Target Build-Demo-Reports
+  - ps: .\demos\build.ps1
 
 # Tests
 test: off
