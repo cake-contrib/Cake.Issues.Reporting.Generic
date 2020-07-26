@@ -44,6 +44,9 @@ jobs:
   - powershell: ./build.ps1 -verbosity diagnostic
     workingDirectory: ./demos/
     displayName: 'Run integration tests'
+  - publish: $(Build.SourcesDirectory)/docs/templates
+    artifact: Integration Tests Windows (.NET Framework runner)
+    displayName: 'Publish generated reports as build artifact'
 # Integration Tests macOS 10.14 (.NET Framework runner)
 - job: Test_macOS_DotNetFramework
   displayName: 'Integration Tests macOS 10.14 (.NET Framework runner)'
@@ -75,3 +78,6 @@ jobs:
       ./build.sh --verbosity diagnostic
     workingDirectory: ./demos/
     displayName: 'Run integration tests'
+  - publish: $(Build.SourcesDirectory)/docs/templates
+    artifact: Integration Tests macOS 10.14 (.NET Framework runner)
+    displayName: 'Publish generated reports as build artifact'
