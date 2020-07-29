@@ -1,7 +1,6 @@
 ##########################################################################
 # This is the Cake bootstrapper script for PowerShell.
-# This file was downloaded from https://github.com/cake-build/resources
-# Feel free to change this file to fit your needs.
+# Based on boostrapper from https://github.com/cake-build/resources
 ##########################################################################
 
 <#
@@ -250,7 +249,13 @@ if ($ShowDescription) { $cakeArguments += "-showdescription" }
 if ($DryRun) { $cakeArguments += "-dryrun" }
 $cakeArguments += $ScriptArgs
 
-# Start Cake
-Write-Host "Running build script..."
-Invoke-Expression "& $CAKE_EXE_INVOCATION $($cakeArguments -join " ")"
+# Bootstrap & start Cake
+Write-Host "Bootstrapping Cake..."
+Invoke-Expression "& $CAKE_EXE_INVOCATION $Script --bootstrap"
+if ($LASTEXITCODE -eq 0)
+{
+    Write-Host "Running build script..."
+    Invoke-Expression "& $CAKE_EXE_INVOCATION $($cakeArguments -join " ")"
+}
+
 exit $LASTEXITCODE
