@@ -2,8 +2,7 @@
 
 ##########################################################################
 # This is the Cake bootstrapper script for Linux and OS X.
-# This file was downloaded from https://github.com/cake-build/resources
-# Feel free to change this file to fit your needs.
+# Based on bootstrapper from https://github.com/cake-build/resources
 ##########################################################################
 
 # Define directories.
@@ -113,5 +112,5 @@ if [ ! -f "$CAKE_EXE" ]; then
     exit 1
 fi
 
-# Start Cake
-exec mono "$CAKE_EXE" $SCRIPT "${CAKE_ARGUMENTS[@]}"
+# Bootstrap & start Cake
+(exec mono "$CAKE_EXE" $SCRIPT --bootstrap) && (exec mono "$CAKE_EXE" $SCRIPT "${CAKE_ARGUMENTS[@]}") 
