@@ -278,4 +278,5 @@ tools/**
 !tools/packages.config
 BuildArtifacts/
 
+.dotnet/
 .DS_Store
