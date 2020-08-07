@@ -9,7 +9,7 @@
     /// <summary>
     /// Extensions for <see cref="string"/>.
     /// </summary>
-    internal static class StringExtensions
+    public static class StringExtensions
     {
         /// <summary>
         /// Sanitizes a string to be a valid HTML ID.
