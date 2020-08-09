@@ -37,10 +37,19 @@ Task("Build")
 #endif
 
     // Read issues
+    var readIssuesSettings = new ReadIssuesSettings(data.RepoRootFolder)
+    {
+        FileLinkSettings =
+            IssueFileLinkSettingsForGitHubBranch(
+                new System.Uri("https://github.com/cake-contrib/Cake.Issues.Reporting.Generic"),
+                "develop"
+            )
+    };
+
     data.Issues.AddRange(
         ReadIssues(
             MsBuildIssuesFromFilePath(
                 msBuildLogFilePath,
                 MsBuildBinaryLogFileFormat),
-            data.RepoRootFolder));
+            readIssuesSettings));
 });

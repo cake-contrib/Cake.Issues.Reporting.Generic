@@ -20,7 +20,12 @@ Task("Lint-DemoDocumentation")
     // Read issues
     var readIssuesSettings = new ReadIssuesSettings(data.RepoRootFolder)
     {
-        Run = "Demos documentation"
+        Run = "Demos documentation",
+        FileLinkSettings =
+            IssueFileLinkSettingsForGitHubBranch(
+                new System.Uri("https://github.com/cake-contrib/Cake.Issues.Website"),
+                "develop"
+            )
     };
 
     data.Issues.AddRange(
@@ -47,7 +52,12 @@ Task("Lint-TemplateGalleryDocumentation")
     // Read issues
     var readIssuesSettings = new ReadIssuesSettings(data.RepoRootFolder)
     {
-        Run = "Template gallery documentation"
+        Run = "Template gallery documentation",
+        FileLinkSettings =
+            IssueFileLinkSettingsForGitHubBranch(
+                new System.Uri("https://github.com/cake-contrib/Cake.Issues.Website"),
+                "develop"
+            )
     };
 
     data.Issues.AddRange(
