@@ -3,6 +3,9 @@
 #---------------------------------#
 image: Visual Studio 2019
 
+environment:
+  MYGET_SOURCE:
+
 #---------------------------------#
 #  Build Script                   #
 #---------------------------------#
@@ -11,7 +14,11 @@ install:
   - ps: nuget update -self
 
 build_script:
-  - ps: .\build.ps1 -Target AppVeyor
+  - ps: .\build.ps1 -Target CI
+
+# Tests
+test_script:
+  - ps: .\demos\build.ps1
 
 # Tests
 test: off

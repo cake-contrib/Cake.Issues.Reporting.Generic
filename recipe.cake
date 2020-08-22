@@ -1,4 +1,4 @@
-#load nuget:?package=Cake.Recipe&version=1.0.0
+#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=2.0.0-alpha0319&prerelease
 
 Environment.SetVariableNames();
 
@@ -11,7 +11,8 @@ BuildParameters.SetParameters(
     repositoryName: "Cake.Issues.Reporting.Generic",
     appVeyorAccountName: "cakecontrib",
     shouldGenerateDocumentation: false,
-    shouldRunCodecov: false,
+    shouldRunDupFinder: false,
+    shouldRunCodecov: true,
     shouldRunGitVersion: true);
 
 BuildParameters.PrintParameters(Context);
@@ -24,4 +25,4 @@ ToolSettings.SetToolSettings(
     testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
     testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
-Build.Run();
+Build.RunDotNetCore();
