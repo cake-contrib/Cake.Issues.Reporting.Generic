@@ -1,4 +1,4 @@
-#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=2.0.0-alpha0319&prerelease
+#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=2.0.0-alpha0487&prerelease
 
 Environment.SetVariableNames();
 
@@ -11,9 +11,7 @@ BuildParameters.SetParameters(
     repositoryName: "Cake.Issues.Reporting.Generic",
     appVeyorAccountName: "cakecontrib",
     shouldGenerateDocumentation: false,
-    shouldRunDupFinder: false,
-    shouldRunCodecov: true,
-    shouldRunGitVersion: true);
+    shouldRunDupFinder: false);
 
 BuildParameters.PrintParameters(Context);
 
