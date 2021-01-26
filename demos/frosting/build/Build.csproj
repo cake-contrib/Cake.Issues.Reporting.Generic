@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- <PackageReference Include="Cake.Frosting" Version="1.0.0-rc0002" />
+    <PackageReference Include="Cake.Issues" Version="0.9.0" />
+    <PackageReference Include="Cake.Issues.Reporting" Version="0.9.0" /> -->
+    <PackageReference Include="Cake.Issues.Reporting.Generic" Version="0.9.*-*" />
+    <!-- <PackageReference Include="Cake.Issues.Reporting.Generic" Version="*-*" /> -->
+  </ItemGroup>
+</Project>
