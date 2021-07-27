@@ -18,7 +18,7 @@ build_script:
 
 # Tests
 test_script:
-  - ps: .\demos\build.ps1
+  - ps: .\demos\script-runner\build.ps1
 
 # Tests
 test: off
