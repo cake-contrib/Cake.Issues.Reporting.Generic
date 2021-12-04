@@ -144,12 +144,12 @@ jobs:
   - publish: $(Build.SourcesDirectory)/docs/templates
     artifact: Integration Tests macOS 10.15 (.NET Core tool)
     displayName: 'Publish generated reports as build artifact'
-# Integration Tests Ubuntu 16.04 (Mono)
+# Integration Tests Ubuntu 18.04 (Mono)
 - job: Test_ubuntu_Mono
-  displayName: 'Integration Tests Ubuntu 16.04 (Mono)'
+  displayName: 'Integration Tests Ubuntu 18.04 (Mono)'
   dependsOn: Build
   pool:
-    vmImage: 'ubuntu-16.04'
+    vmImage: 'ubuntu-18.04'
   steps:
   - task: NodeTool@0
     inputs:
@@ -175,10 +175,10 @@ jobs:
     displayName: 'Publish generated reports as build artifact'
 # Integration Tests Ubuntu 16.04 (.NET Core tool)
 - job: Test_ubuntu_DotNetCoreTool
-  displayName: Integration Tests Ubuntu 16.04 (.NET Core tool)
+  displayName: Integration Tests Ubuntu 18.04 (.NET Core tool)
   dependsOn: Build
   pool:
-    vmImage: 'ubuntu-16.04'
+    vmImage: 'ubuntu-18.04'
   steps:
   - task: NodeTool@0
     inputs:
