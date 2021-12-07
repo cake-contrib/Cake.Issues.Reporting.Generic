@@ -77,6 +77,37 @@ jobs:
   - publish: $(Build.SourcesDirectory)/docs/templates
     artifact: Integration Tests Windows (.NET Core tool)
     displayName: 'Publish generated reports as build artifact'
+# Integration Tests Windows 2019 (Frosting)
+- job: Test_Windows_2019_Frosting
+  displayName: Integration Tests Windows 2019 (Frosting)
+  dependsOn: Build
+  pool:
+    vmImage: 'windows-2019'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install NodeJs 14.x'
+  - powershell: choco install markdownlint-cli --no-progress
+    displayName: 'Install required tools'
+  - task: DeleteFiles@1
+    inputs:
+      Contents: 'docs/templates/*.html'
+      displayName: 'Cleanup reports'
+  - download: current
+    artifact: NuGet Package
+    displayName: 'Download build artifact'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/NuGet Package
+      targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+    displayName: 'Copy build artifact for test run'
+  - powershell: ./build.ps1 --verbosity=diagnostic
+    workingDirectory: ./demos/frosting/
+    displayName: 'Run integration tests'
+  - publish: $(Build.SourcesDirectory)/docs/templates
+    artifact: Integration Tests Windows 2019 (Frosting)
+    displayName: 'Publish generated reports as build artifact'
 # Integration Tests macOS 10.14 (Mono)
 - job: Test_macOS_Mono
   displayName: 'Integration Tests macOS 10.14 (Mono)'
@@ -144,6 +175,35 @@ jobs:
   - publish: $(Build.SourcesDirectory)/docs/templates
     artifact: Integration Tests macOS 10.15 (.NET Core tool)
     displayName: 'Publish generated reports as build artifact'
+# Integration Tests macOS 10.15 (Frosting)
+- job: Test_macOS_10_15_Frosting
+  displayName: Integration Tests macOS 10.15 (Frosting)
+  dependsOn: Build
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install NodeJs 14.x'
+  - bash: |
+      npm install -g markdownlint-cli
+    displayName: 'Install required tools'
+  - download: current
+    artifact: NuGet Package
+    displayName: 'Download build artifact'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/NuGet Package
+      targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+    displayName: 'Copy build artifact for test run'
+  - bash: |
+      ./build.sh --verbosity=diagnostic
+    workingDirectory: ./demos/frosting/
+    displayName: 'Run integration tests'
+  - publish: $(Build.SourcesDirectory)/docs/templates
+    artifact: Integration Tests macOS 10.15 (Frosting)
+    displayName: 'Publish generated reports as build artifact'
 # Integration Tests Ubuntu 18.04 (Mono)
 - job: Test_ubuntu_Mono
   displayName: 'Integration Tests Ubuntu 18.04 (Mono)'
@@ -205,4 +265,33 @@ jobs:
     displayName: 'Run integration tests'
   - publish: $(Build.SourcesDirectory)/docs/templates
     artifact: Integration Tests Ubuntu 16.04 (.NET Core tool)
+    displayName: 'Publish generated reports as build artifact'
+# Integration Tests Ubuntu 16.04 (Frosting)
+- job: Test_Ubuntu_18_04_Frosting
+  displayName: Integration Tests Ubuntu 18.04 (Frosting)
+  dependsOn: Build
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install NodeJs 14.x'
+  - bash: |
+      npm install -g markdownlint-cli
+    displayName: 'Install required tools'
+  - download: current
+    artifact: NuGet Package
+    displayName: 'Download build artifact'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/NuGet Package
+      targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+    displayName: 'Copy build artifact for test run'
+  - bash: |
+      ./build.sh --verbosity=diagnostic
+    workingDirectory: ./demos/frosting/
+    displayName: 'Run integration tests'
+  - publish: $(Build.SourcesDirectory)/docs/templates
+    artifact: Integration Tests Ubuntu 16.04 (Frosting)
     displayName: 'Publish generated reports as build artifact'
