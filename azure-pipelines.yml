@@ -142,12 +142,12 @@ jobs:
   - publish: $(Build.SourcesDirectory)/docs/templates
     artifact: Integration Tests Windows Server 2022 (Frosting)
     displayName: 'Publish generated reports as build artifact'
-# Integration Tests macOS 10.15 (.NET Core tool)
-- job: Test_macOS_10_15_DotNetCoreTool
-  displayName: Integration Tests macOS 10.15 (.NET Core tool)
+# Integration Tests macOS 11 (.NET Core tool)
+- job: Test_macOS_11_DotNetCoreTool
+  displayName: Integration Tests macOS 11 (.NET Core tool)
   dependsOn: Build
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
   steps:
   - task: NodeTool@0
     inputs:
@@ -173,14 +173,47 @@ jobs:
     workingDirectory: ./demos/script-runner/
     displayName: 'Run integration tests'
   - publish: $(Build.SourcesDirectory)/docs/templates
-    artifact: Integration Tests macOS 10.15 (.NET Core tool)
+    artifact: Integration Tests macOS 11 (.NET Core tool)
     displayName: 'Publish generated reports as build artifact'
-# Integration Tests macOS 10.15 (Frosting)
-- job: Test_macOS_10_15_Frosting
-  displayName: Integration Tests macOS 10.15 (Frosting)
+# Integration Tests macOS 13 (.NET Core tool)
+- job: Test_macOS_13_DotNetCoreTool
+  displayName: Integration Tests macOS 13 (.NET Core tool)
   dependsOn: Build
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-13'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install NodeJs 14.x'
+  - bash: |
+      npm install -g markdownlint-cli
+    displayName: 'Install required tools'
+  - download: current
+    artifact: NuGet Package
+    displayName: 'Download build artifact'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/NuGet Package
+      targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+    displayName: 'Copy build artifact for test run'
+  - bash: |
+      dotnet tool restore
+    workingDirectory: ./demos/script-runner/
+    displayName: 'Restore .NET Core tool'
+  - bash: |
+      dotnet cake
+    workingDirectory: ./demos/script-runner/
+    displayName: 'Run integration tests'
+  - publish: $(Build.SourcesDirectory)/docs/templates
+    artifact: Integration Tests macOS 13 (.NET Core tool)
+    displayName: 'Publish generated reports as build artifact'
+# Integration Tests macOS 11 (Frosting)
+- job: Test_macOS_11_Frosting
+  displayName: Integration Tests macOS 11 (Frosting)
+  dependsOn: Build
+  pool:
+    vmImage: 'macOS-11'
   steps:
   - task: NodeTool@0
     inputs:
@@ -202,14 +235,14 @@ jobs:
     workingDirectory: ./demos/frosting/
     displayName: 'Run integration tests'
   - publish: $(Build.SourcesDirectory)/docs/templates
-    artifact: Integration Tests macOS 10.15 (Frosting)
+    artifact: Integration Tests macOS 11 (Frosting)
     displayName: 'Publish generated reports as build artifact'
-# Integration Tests Ubuntu 18.04 (.NET Core tool)
-- job: Test_Ubuntu_18_04_DotNetCoreTool
-  displayName: Integration Tests Ubuntu 18.04 (.NET Core tool)
+# Integration Tests macOS 13 (Frosting)
+- job: Test_macOS_13_Frosting
+  displayName: Integration Tests macOS 13 (Frosting)
   dependsOn: Build
   pool:
-    vmImage: 'ubuntu-18.04'
+    vmImage: 'macOS-13'
   steps:
   - task: NodeTool@0
     inputs:
@@ -227,15 +260,11 @@ jobs:
       targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
     displayName: 'Copy build artifact for test run'
   - bash: |
-      dotnet tool restore
-    workingDirectory: ./demos/script-runner/
-    displayName: 'Restore .NET Core tool'
-  - bash: |
-      dotnet cake
-    workingDirectory: ./demos/script-runner/
+      ./build.sh --verbosity=diagnostic
+    workingDirectory: ./demos/frosting/
     displayName: 'Run integration tests'
   - publish: $(Build.SourcesDirectory)/docs/templates
-    artifact: Integration Tests Ubuntu 18.04 (.NET Core tool)
+    artifact: Integration Tests macOS 13 (Frosting)
     displayName: 'Publish generated reports as build artifact'
 # Integration Tests Ubuntu 20.04 (.NET Core tool)
 - job: Test_Ubuntu_20_04_DotNetCoreTool
@@ -270,12 +299,12 @@ jobs:
   - publish: $(Build.SourcesDirectory)/docs/templates
     artifact: Integration Tests Ubuntu 20.04 (.NET Core tool)
     displayName: 'Publish generated reports as build artifact'
-# Integration Tests Ubuntu 18.04 (Frosting)
-- job: Test_Ubuntu_18_04_Frosting
-  displayName: Integration Tests Ubuntu 18.04 (Frosting)
+# Integration Tests Ubuntu 22.04 (.NET Core tool)
+- job: Test_Ubuntu_22_04_DotNetCoreTool
+  displayName: Integration Tests Ubuntu 22.04 (.NET Core tool)
   dependsOn: Build
   pool:
-    vmImage: 'ubuntu-18.04'
+    vmImage: 'ubuntu-22.04'
   steps:
   - task: NodeTool@0
     inputs:
@@ -293,11 +322,15 @@ jobs:
       targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
     displayName: 'Copy build artifact for test run'
   - bash: |
-      ./build.sh --verbosity=diagnostic
-    workingDirectory: ./demos/frosting/
+      dotnet tool restore
+    workingDirectory: ./demos/script-runner/
+    displayName: 'Restore .NET Core tool'
+  - bash: |
+      dotnet cake
+    workingDirectory: ./demos/script-runner/
     displayName: 'Run integration tests'
   - publish: $(Build.SourcesDirectory)/docs/templates
-    artifact: Integration Tests Ubuntu 18.04 (Frosting)
+    artifact: Integration Tests Ubuntu 22.04 (.NET Core tool)
     displayName: 'Publish generated reports as build artifact'
 # Integration Tests Ubuntu 20.04 (Frosting)
 - job: Test_Ubuntu_20_04_Frosting
@@ -327,4 +360,33 @@ jobs:
     displayName: 'Run integration tests'
   - publish: $(Build.SourcesDirectory)/docs/templates
     artifact: Integration Tests Ubuntu 20.04 (Frosting)
+    displayName: 'Publish generated reports as build artifact'
+# Integration Tests Ubuntu 22.04 (Frosting)
+- job: Test_Ubuntu_22_04_Frosting
+  displayName: Integration Tests Ubuntu 22.04 (Frosting)
+  dependsOn: Build
+  pool:
+    vmImage: 'ubuntu-22.04'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '14.x'
+    displayName: 'Install NodeJs 14.x'
+  - bash: |
+      npm install -g markdownlint-cli
+    displayName: 'Install required tools'
+  - download: current
+    artifact: NuGet Package
+    displayName: 'Download build artifact'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Pipeline.Workspace)/NuGet Package
+      targetFolder: $(Build.SourcesDirectory)/BuildArtifacts/Packages/NuGet
+    displayName: 'Copy build artifact for test run'
+  - bash: |
+      ./build.sh --verbosity=diagnostic
+    workingDirectory: ./demos/frosting/
+    displayName: 'Run integration tests'
+  - publish: $(Build.SourcesDirectory)/docs/templates
+    artifact: Integration Tests Ubuntu 22.04 (Frosting)
     displayName: 'Publish generated reports as build artifact'
