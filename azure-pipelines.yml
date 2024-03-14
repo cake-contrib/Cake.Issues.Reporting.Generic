@@ -50,8 +50,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - powershell: choco install markdownlint-cli --no-progress
     displayName: 'Install required tools'
   - download: current
@@ -84,8 +84,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - powershell: choco install markdownlint-cli --no-progress
     displayName: 'Install required tools'
   - download: current
@@ -118,8 +118,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - powershell: choco install markdownlint-cli --no-progress
     displayName: 'Install required tools'
   - task: DeleteFiles@1
@@ -153,8 +153,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - powershell: choco install markdownlint-cli --no-progress
     displayName: 'Install required tools'
   - task: DeleteFiles@1
@@ -188,8 +188,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -225,8 +225,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -262,8 +262,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -295,8 +295,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -328,8 +328,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -365,8 +365,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -402,8 +402,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
@@ -435,8 +435,8 @@ jobs:
     displayName: 'Install .NET 6'
   - task: NodeTool@0
     inputs:
-      versionSpec: '14.x'
-    displayName: 'Install NodeJs 14.x'
+      versionSpec: '20.x'
+    displayName: 'Install NodeJs 20.x'
   - bash: |
       npm install -g markdownlint-cli
     displayName: 'Install required tools'
