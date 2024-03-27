@@ -7,7 +7,7 @@
 #addin "Cake.Issues.Reporting&prerelease"
 #addin "Cake.Issues.Reporting.Generic&prerelease"
 
-#tool nuget:?package=JetBrains.ReSharper.CommandLineTools&version=2021.2.2
+#tool nuget:?package=JetBrains.ReSharper.CommandLineTools&version=2021.3.4
 
 #load build/build/build.cake
 #load build/analyze/analyze.cake
